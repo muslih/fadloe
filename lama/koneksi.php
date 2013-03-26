@@ -16,15 +16,9 @@ $pass = 'gulnar';
 $dbname ='roby';
  
 //mengubung ke host
-$connect = mysql_connect($host, $user, $pass);
+$connect = mysql_connect($host, $user, $pass) or die(mysql_error());
  
 //memilih database yang akan digunakan
 $dbselect = mysql_select_db($dbname);
-
-if ($connect) {
-	$dbselect;
-}else{
-	echo "koneksi gagal";
-}
 
 ?>
