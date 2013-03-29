@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2013 at 03:47 AM
+-- Generation Time: Mar 29, 2013 at 07:31 PM
 -- Server version: 5.1.67
 -- PHP Version: 5.3.6-13ubuntu3.9
 
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `roby`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id_admin` int(10) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(200) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_admin`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`) VALUES
+(1, 'admin', 'admin', '*58D24DFDC5B5D55D6F6A25496AB51B74AA0FF7C9'),
+(5, 'muslih ferecov', 'muslih', '*58D24DFDC5B5D55D6F6A25496AB51B74AA0FF7C9');
 
 -- --------------------------------------------------------
 
