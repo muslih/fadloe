@@ -1,16 +1,14 @@
 <?php
-  include "ceksesion.php";
+  include "include/ceksesion.php"
 ?>
-
 
 
 <h2>Data Sekolah</h2>
 <table border="1">
   <?php
-include 'include/koneksi.php';
-
-$no=1;
-$sql = mysql_query("select * from data_sekolah");
+  include "include/koneksi.php";
+  $no=1;
+  $sql = mysql_query("select * from data_sekolah");
 while ($data = mysql_fetch_array($sql)) {
 
 ?>
@@ -121,3 +119,5 @@ while ($data2 = mysql_fetch_array($sql2)) {
     }
    ?>
 </table>
+
+<a href="include/logout.php">Logout</a>
