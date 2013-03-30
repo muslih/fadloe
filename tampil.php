@@ -1,123 +1,74 @@
 <?php
-  include "include/ceksesion.php"
+  include "include/ceksesion.php";
+ 
 ?>
 
 
 <h2>Data Sekolah</h2>
 <table border="1">
+   <tr>
+    <td>No</td>
+    <td>NPSN</td>
+    <td>Nama Sekolah</td>
+    <td>Jenis Sekolah</td>
+    <td>Kabuparen</td>
+    <td>aksi</td>
+  </tr>
   <?php
+  include 'include/ClassPaging.php';
   include "include/koneksi.php";
-  $no=1;
-  $sql = mysql_query("select * from data_sekolah");
-while ($data = mysql_fetch_array($sql)) {
+
+  $limit = 5; 
+
+  //buat query
+  $query = new CnnNav($limit,'nama_sekolah','*','npsn');
+
+  //jalankan querynya
+  $result = $query ->getResult();
+  //perintah diatas sama dengan perintah mysql_query
+
+  $nomor = ($limit * $_GET['offset'])+1; 
+  while($data = mysql_fetch_array($result)){
+
+  //lama 
+  //   $no=1;
+  //   $sql = mysql_query("select * from data_sekolah");
+  // while ($data = mysql_fetch_array($sql)) {
 
 ?>
+
+
   <tr>
-    <td>No</td>
-    <td>:</td>
     <td>
-      <?php echo $no ; ?>
+      <?php echo $nomor ; ?>
     </td>
-  </tr>
-  <tr>
-    <td>NPSN</td>
-    <td>:</td>
     <td>
       <?php echo $data[npsn]; ?>
     </td>
-  </tr>
-  <tr>
-    <td>Nama Sekolah</td>
-    <td>:</td>
     <td>
       <?php echo $data[nama_sekolah]; ?>
     </td>
-  </tr>
-  <tr>
-    <td>Jenis Sekolah</td>
-    <td>:</td>
     <td>
       <?php echo $data[jenis_sekolah]; ?>
     </td>
-  </tr>
-  <tr>
-    <td>Kode Kabupaten</td>
-    <td>:</td>
-    <td>
-       <?php echo $data[kode_kabupaten]; ?>
-    </td>
-  </tr>
-  <tr>
-    <td>Nama Kabupaten</td>
-    <td>:</td>
     <td>
       <?php echo $data[nama_kabupaten]; ?>
     </td>
+    <td>aksi</td>
   </tr>
-  <tr>
-    <td>Kode Provinsi</td>
-    <td>:</td>
-    <td>
-      <?php echo $data[kode_provinsi]; ?>
-    </td>
-  </tr>
-  <tr>
-    <td>Nama Provinsi</td>
-    <td>:</td>
-    <td>
-      <?php echo $data[nama_provinsi]; ?>
-    </td>
-  </tr>
-  <tr>
-    <td>Akreditasi Sekolah</td>
-    <td>:</td>
-    <td>
-      <?php echo $data[akreditasi_sekolah]; ?>
-    </td>
-  </tr>
-  <tr>
-    <td>Kepemilikan</td>
-    <td>:</td>
-    <td>
-      <?php echo $data[kepemilikan]; ?>
-    </td>
-  </tr>
+
   <?php 
-    $no++;
+    $nomor++;
   }
   ?>
 </table>
 
-<h2>Data Jurusan</h2>
-<table border="1">
-  <?php
-$n=1;
-$sql2 = mysql_query("select * from data_jurusan");
-while ($data2 = mysql_fetch_array($sql2)) {
-?>
-  <tr>
-    <td>ID Jurusan</td>
-    <td>:</td>
-    <td><?php echo $data2[id_jurusan]; ?></td>
-  </tr>
-  <tr>
-    <td>NPSN</td>
-    <td>:</td>
-    <td>
-      <?php echo $data2[npsn_sekolah]; ?>
-    </td>
-  </tr>
-  <tr>
-    <td>Masa Studi</td>
-    <td>:</td>
-    <td>
-      <?php echo $data2[masa_studi_dalam_tahun]; ?>
-    </td>
-  </tr>
-  <?php 
-   $n++;
-    }
-   ?>
-</table>
+
+  <p height="25" colspan="6" align="center" valign="middle">
+    <?php 
+      $query->printNav(); //Cetak paging
+    ?>
+  </p>
+
 
 <a href="include/logout.php">Logout</a>
